@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -31,29 +33,55 @@ namespace Core_Proje.Controllers
         [HttpPost]
         public IActionResult AddPortfolio(Portfolio portfolio)
         {
-            portfolioManager.TAdd(portfolio);
-            return RedirectToAction(nameof(Index));
+            PortfolioValidator validations = new PortfolioValidator();
+            ValidationResult results = validations.Validate(portfolio);
+            if (results.IsValid)
+            {
+                portfolioManager.TAdd(portfolio);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
-        public IActionResult DeleteSkill(int id)
+        public IActionResult DeletePortfolio(int id)
         {
-            var values = portfolioManager.GetByID(id);
+            var values = portfolioManager.TGetByID(id);
             portfolioManager.TDelete(values);
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
-        public IActionResult EditSkill(int id)
+        public IActionResult EditPortfolio(int id)
         {
             ViewBag.v1 = "Portfolio Update";
             ViewBag.v2 = "Portfolio";
-            ViewBag.v3 = "Portfolio Update";
-            var values = portfolioManager.GetByID(id);
+            ViewBag.v3 = "Portfolio Edit";
+            var values = portfolioManager.TGetByID(id);
             return View(values);
         }
         [HttpPost]
-        public IActionResult EditSkill(Portfolio portfolio)
+        public IActionResult EditPortfolio(Portfolio portfolio)
         {
-            portfolioManager.TUpdate(portfolio);
-            return RedirectToAction(nameof(Index));
+            PortfolioValidator validations = new PortfolioValidator();
+            ValidationResult results = validations.Validate(portfolio);
+            if (results.IsValid)
+            {
+                portfolioManager.TUpdate(portfolio);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorCode);
+                }
+            }
+            return View();
         }
     }
 }

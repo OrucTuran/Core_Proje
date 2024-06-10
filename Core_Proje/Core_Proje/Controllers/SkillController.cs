@@ -36,7 +36,7 @@ namespace Core_Proje.Controllers
         }
         public IActionResult DeleteSkill(int id)
         {
-            var values = skillManager.GetByID(id);
+            var values = skillManager.TGetByID(id);
             skillManager.TDelete(values);
             return RedirectToAction(nameof(Index));
         }
@@ -46,7 +46,7 @@ namespace Core_Proje.Controllers
             ViewBag.v1 = "Skill Update";
             ViewBag.v2 = "Skills";
             ViewBag.v3 = "Skill Update";
-            var values = skillManager.GetByID(id);
+            var values = skillManager.TGetByID(id);
             return View(values);
         }
         [HttpPost]

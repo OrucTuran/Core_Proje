@@ -33,7 +33,7 @@ namespace Core_Proje.Controllers
         }
         public IActionResult DeleteExperience(int id)
         {
-            var values = experienceManager.GetByID(id);
+            var values = experienceManager.TGetByID(id);
             experienceManager.TDelete(values);
             return RedirectToAction(nameof(Index));
         }
@@ -43,7 +43,7 @@ namespace Core_Proje.Controllers
             ViewBag.v1 = "Experience List";
             ViewBag.v2 = "Experiences";
             ViewBag.v3 = "Experience List";
-            var values = experienceManager.GetByID(id);
+            var values = experienceManager.TGetByID(id);
             return View(values);
         }
         [HttpPost]
