@@ -116,8 +116,4 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Shared\Components\Dashboard\" />
-  </ItemGroup>
-
 </Project>
