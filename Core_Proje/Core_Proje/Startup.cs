@@ -45,7 +45,7 @@ namespace Core_Proje
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseAuthentication(); //kimlik dogrulamasi yapildiginda admin tarafli sayfalara erisim icin
             app.UseRouting();
 
             app.UseAuthorization();
