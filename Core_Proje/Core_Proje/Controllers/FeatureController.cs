@@ -16,9 +16,6 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            ViewBag.v1 = "Edit";
-            ViewBag.v2 = "Highlights";
-            ViewBag.v3 = "Highlight Page";
             var values = featureManager. TGetByID(1);
             return View(values);
 

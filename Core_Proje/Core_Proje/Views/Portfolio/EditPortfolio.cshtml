@@ -1,49 +1,54 @@
 ﻿@model EntityLayer.Concrete.Portfolio
 @{
     ViewData["Title"] = "EditPortfolio";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
-
-<div class="card-header border-0">
-    <h3 class="mb-0">Portfolio Edit Page</h3>
-</div>
 
 @using (Html.BeginForm("EditPortfolio", "Portfolio", FormMethod.Post))
 {
-    @Html.HiddenFor(x => x.PortfolioID)
-    <br />
-    <br />
-    @Html.Label("Portfolio Title")
-    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Name)
-    <br />
-    <label>Image 1</label>
-    @Html.TextBoxFor(x => x.ImageURL, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.ImageURL)
-    <br />
-    <label>Image 1</label>
-    @Html.TextBoxFor(x => x.BigImageURL, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.BigImageURL)
-    <br />
-    <label>Project URL</label>
-    @Html.TextBoxFor(x => x.ProjectURL, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.ProjectURL)
-    <br />
-    <label>Price</label>
-    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Price)
-    <br />
-    <label>Completion</label>
-    @Html.TextBoxFor(x => x.Completion, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Completion)
-    <br />
-    <label>Project URL</label>
-    @Html.TextBoxFor(x => x.ProjectURL, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.ProjectURL)
-    <br />
-    <label>Platform</label>
-    @Html.TextBoxFor(x => x.Platform, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Platform)
-    <br />
-    <button class="btn btn-info">Save</button>
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-description"> Portfolio Edit Panel </p>
+                <form class="forms-sample">
+                    @Html.HiddenFor(x => x.PortfolioID)
+                    <br />
+                    <br />
+                    @Html.Label("Portfolio Title")
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Name)
+                    <br />
+                    <label>Image 1</label>
+                    @Html.TextBoxFor(x => x.ImageURL, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ImageURL)
+                    <br />
+                    <label>Image 1</label>
+                    @Html.TextBoxFor(x => x.BigImageURL, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.BigImageURL)
+                    <br />
+                    <label>Project URL</label>
+                    @Html.TextBoxFor(x => x.ProjectURL, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ProjectURL)
+                    <br />
+                    <label>Price</label>
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Price)
+                    <br />
+                    <label>Completion</label>
+                    @Html.TextBoxFor(x => x.Completion, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Completion)
+                    <br />
+                    <label>Project URL</label>
+                    @Html.TextBoxFor(x => x.ProjectURL, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ProjectURL)
+                    <br />
+                    <label>Platform</label>
+                    @Html.TextBoxFor(x => x.Platform, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Platform)
+                    <br />
+                    <button class="btn btn-info">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
 }
