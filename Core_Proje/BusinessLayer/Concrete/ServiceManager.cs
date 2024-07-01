@@ -20,7 +20,7 @@ namespace BusinessLayer.Concrete
 
         public Service TGetByID(int id)
         {
-           return _serviceDal.GetByID(id);
+            return _serviceDal.GetByID(id);
         }
 
         public void TAdd(Service t)
@@ -41,6 +41,11 @@ namespace BusinessLayer.Concrete
         public void TUpdate(Service t)
         {
             _serviceDal.Update(t);
+        }
+
+        public List<Service> TGetListByFilter()
+        {
+            throw new NotImplementedException();
         }
     }
 }
