@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
+
+
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
@@ -27,13 +29,13 @@
                                 <td>@item.ExperienceID</td>
                                 <td>@item.Name</td>
                                 <td>@item.Date</td>
-                                <td><a href="/Experience/DeleteExperience/@item.ExperienceID"class="btn btn-outline-danger">Delete</a></td>
-                                <td><a href="/Experience/EditExperience/@item.ExperienceID"class="btn btn-outline-success">Update</a></td>
+                                <td><a href="/Experience/DeleteExperience/@item.ExperienceID" class="btn btn-outline-danger">Delete</a></td>
+                                <td><a href="/Experience/EditExperience/@item.ExperienceID" class="btn btn-outline-success">Update</a></td>
                             </tr>
                         }
                     </tbody>
                 </table>
-                <a href="/Experience/AddExperience/"class="btn btn-outline-info">Save</a>
+                <a href="/Experience/AddExperience/" class="btn btn-outline-info">Save</a>
             </div>
         </div>
     </div>
