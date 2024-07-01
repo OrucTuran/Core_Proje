@@ -42,5 +42,10 @@ namespace Core_Proje.Areas.Writer.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Index),"Login");
+        }
     }
 }
