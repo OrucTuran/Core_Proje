@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BusinessLayer.Concrete
 {
-    public class FeatureManager : IGenericService
+    public class FeatureManager : IFeatureService
     {
         IFeatureDal _featureDal;
 
@@ -41,6 +42,11 @@ namespace BusinessLayer.Concrete
         public void TUpdate(Feature t)
         {
             _featureDal.Update(t);
+        }
+
+        public List<Feature> TGetListByFilter()
+        {
+            throw new NotImplementedException();
         }
     }
 }
