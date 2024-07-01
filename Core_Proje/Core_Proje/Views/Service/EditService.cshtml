@@ -1,23 +1,26 @@
 ﻿@model EntityLayer.Concrete.Service
 @{
     ViewData["Title"] = "EditService";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
-
-<div class="card-header border-0">
-    <h3 class="mb-0">Service Edit Page</h3>
-</div>
 
 @using (Html.BeginForm("EditService", "Service", FormMethod.Post))
 {
-    @Html.HiddenFor(x => x.ServiceID)
-    <br />
-    <br />
-    @Html.Label("Service Title")
-    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
-    <br />
-    <label>Image URL</label>
-    @Html.TextBoxFor(x => x.ImageURL, new { @class = "form-control" })
-    <br />
-    <button class="btn btn-outline-success">Update</button>
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-description"> Service Edit Panel </p>
+                <form class="forms-sample">
+                    @Html.HiddenFor(x => x.ServiceID)
+                    @Html.Label("Service Title")
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                    <br />
+                    <label>Image URL</label>
+                    @Html.TextBoxFor(x => x.ImageURL, new { @class = "form-control" })
+                    <br />
+                    <button class="btn btn-outline-success">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
 }

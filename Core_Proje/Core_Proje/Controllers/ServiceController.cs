@@ -15,9 +15,6 @@ namespace Core_Proje.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.v1 = "Service List";
-            ViewBag.v2 = "Services";
-            ViewBag.v3 = "Service List";
             var values = serviceManager.TGetList();
             return View(values);
 
@@ -25,9 +22,6 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult AddService()
         {
-            ViewBag.v1 = "Service List";
-            ViewBag.v2 = "Services";
-            ViewBag.v3 = "Service Add";
             return View();
         }
         [HttpPost]
@@ -45,9 +39,6 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult EditService(int id)
         {
-            ViewBag.v1 = "Service List";
-            ViewBag.v2 = "Services";
-            ViewBag.v3 = "Service Update";
             var values = serviceManager.TGetByID(id);
             return View(values);
         }
