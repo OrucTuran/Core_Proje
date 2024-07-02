@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Core_Proje.Controllers
+namespace Core_Proje.ViewComponents.Dashboard
 {
-    public class DashboardController : Controller
+    public class AdminNotificationNavbarList : ViewComponent
     {
-        public IActionResult Index()
+        public IViewComponentResult Invoke()
         {
             return View();
         }
