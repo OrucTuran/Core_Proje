@@ -1,5 +1,8 @@
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +31,33 @@ namespace Core_Proje
             services.AddDbContext<Context>();
             services.AddIdentity<WriterUser, WriterRole>().AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews();
+
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                .RequireAuthenticatedUser()
+                                .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+            //benim istedigim sayfaya yonlendirilmesini istedigimde;
+
+            services.AddMvc();
+            //services.AddAuthentication(
+            //        CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie(x =>
+            //    {
+            //        x.LoginPath = "/AdminLogin/Index/";
+
+            //    });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+
+                options.LoginPath = "/Writer/Login/Index/";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
