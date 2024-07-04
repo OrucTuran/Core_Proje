@@ -56,6 +56,19 @@
 
 <br />
 
+<div class="col-md-12">
+    <h5>Update Panel</h5>
+    <input type="text" class="form-control" id="inpeditexpid" placeholder="ID" />
+    <br />
+    <input type="text" class="form-control" id="inpeditexpname" placeholder="Name" />
+    <br />
+    <input type="text" class="form-control" id="inpeditexpdate" placeholder="Date" />
+    <br />
+
+</div>
+
+<br />
+
 
 @section Scripts
 {
@@ -127,6 +140,35 @@
                 success: function (funk3) {
                     loadData();
                 }
+            });
+        });
+
+
+        $(document).ready(function () {
+            $("#btnupdate").click(function () {
+                let values = {
+                    ExperienceID: $("#inpeditexpid").val(),
+                    Name: $("#inpeditexpname").val(),
+                    Date: $("#inpeditexpdate").val()
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Experience2/UpdateExperince/",
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify(values),
+                    success: function (response) {
+                        alert("Update succesfully!");
+                        // Basarili oldugunda sayfayi yenileme veya verileri tekrar yukleme
+                        loadData();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(`Error: ${status}, ${error}`);
+                        console.error(`Response: ${xhr.responseText}`);
+                        alert("An error occurred during the update process.");
+                    }
+                });
             });
         });
     </script>

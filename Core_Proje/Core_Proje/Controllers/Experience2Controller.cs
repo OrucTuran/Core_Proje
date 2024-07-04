@@ -39,7 +39,28 @@ namespace Core_Proje.Controllers
         {
             var values = experienceManager.TGetByID(id);
             experienceManager.TDelete(values);
-            return Ok();
+            return NoContent();
+        }
+        [HttpPost]
+        public IActionResult UpdateExperince([FromBody] Experience p)
+        {
+            if (p == null)
+            {
+                return BadRequest("Empty data was sent.");
+            }
+
+            var v = experienceManager.TGetByID(p.ExperienceID);
+            if (v == null)
+            {
+                return NotFound($"Experience with ID {p.ExperienceID} not found.");
+            }
+
+            v.Name = p.Name;
+            v.Date = p.Date;
+
+            experienceManager.TUpdate(v);
+
+            return Json(v);
         }
     }
 }
