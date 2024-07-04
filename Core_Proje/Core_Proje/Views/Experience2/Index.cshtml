@@ -10,6 +10,7 @@
     <div class="p-2">
         <button type="button" id="btngetlistall" class="btn btn-outline-primary">Get Data</button>
         <button type="button" id="btnadd" class="btn btn-outline-info">Save</button>
+        <button type="button" id="btngetid" class="btn btn-outline-warning">GetByID</button>
     </div>
 </div>
 
@@ -20,6 +21,7 @@
 <br />
 
 <div class="col-md-12">
+    <h5>Add Panel</h5>
     <input type="text" class="form-control" id="inpname" placeholder="Title" />
     <br />
     <input type="text" class="form-control" id="inpdate" placeholder="Date" />
@@ -28,6 +30,13 @@
         <br />
         <input type="text" class="form-control" id="inpmail" placeholder="Mail" />
         <br />*@
+</div>
+
+<br />
+
+<div class="col-md-12">
+    <h5>Gey By ID Panel</h5>
+    <input type="text" class="form-control" id="inpid" placeholder="Enter ID" />
 </div>
 
 @section Scripts
@@ -69,6 +78,22 @@
                     alert(result.Name + " Added successfully!")
                 }
             });
+        });
+
+        $("#btngetid").click(x => {
+            let id = $("#inpid").val();
+
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                url: "/Experience2/GetByID/",
+                data: { ExperienceID: id },
+                success: function (func1) {
+                    console.log(func1);
+                }
+            })
+            console.log(id);
         });
     </script>
 }
