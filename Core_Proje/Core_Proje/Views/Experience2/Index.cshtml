@@ -11,10 +11,18 @@
         <button type="button" id="btngetlistall" class="btn btn-outline-primary">Get Data</button>
         <button type="button" id="btnadd" class="btn btn-outline-info">Save</button>
         <button type="button" id="btngetid" class="btn btn-outline-warning">GetByID</button>
+        <button type="button" id="btndelete" class="btn btn-outline-danger">Delete</button>
+        <button type="button" id="btnupdate" class="btn btn-outline-success">Update</button>
     </div>
 </div>
 
 <div class="p-2" id="listexperience">
+    @*data will come here*@
+</div>
+
+<br />
+
+<div class="p-2" id="listbyidexperience">
     @*data will come here*@
 </div>
 
@@ -38,6 +46,16 @@
     <h5>Gey By ID Panel</h5>
     <input type="text" class="form-control" id="inpid" placeholder="Enter ID" />
 </div>
+
+<br />
+
+<div class="col-md-12">
+    <h5>Delete Panel</h5>
+    <input type="text" class="form-control" id="inpexpid" placeholder="Enter ID" />
+</div>
+
+<br />
+
 
 @section Scripts
 {
@@ -90,10 +108,26 @@
                 url: "/Experience2/GetByID/",
                 data: { ExperienceID: id },
                 success: function (func1) {
-                    console.log(func1);
+                    let result = jQuery.parseJSON(func1)
+                    console.log(result);
+                    let htmlstr = `<table class=table table-hover> <tr> <th>Experience ID</th> <td>${result.ExperienceID}</td></tr> <tr> <th> Experience Title </th> <td> ${result.Name}</td> </tr> </table>`;
+                    $("#listbyidexperience").html(htmlstr);
                 }
             })
             console.log(id);
+        });
+
+        $("#btndelete").click(x => {
+            let id = $("#inpexpid").val();
+            $.ajax({
+                url: "/Experience/DeleteExperience/" + id,
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (funk3) {
+                    loadData();
+                }
+            });
         });
     </script>
 }
