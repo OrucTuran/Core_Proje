@@ -1,0 +1,58 @@
+﻿@using EntityLayer.Concrete
+@model List<Experience>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="col-md-6">
+    <div class="p-2">
+        <button type="button" id="btngetlistall" class="btn btn-outline-primary">Get Data</button>
+        <button type="button" id="btnadd" class="btn btn-outline-info">Save</button>
+    </div>
+</div>
+
+<div class="p-2" id="listexperience">
+    @*data will come here*@
+</div>
+
+<br />
+
+<div class="col-md-12">
+    <input type="text" class="form-control" id="inpname" placeholder="Name" />
+    <br />
+    <input type="text" class="form-control" id="inpsurname" placeholder="Surname" />
+    <br />
+    <input type="text" class="form-control" id="inpusername" placeholder="User Name" />
+    <br />
+    <input type="text" class="form-control" id="inpmail" placeholder="Mail" />
+    <br />
+</div>
+
+@section Scripts
+{
+    <script>
+        $("#btngetlistall").click(function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/Experience2/ListExperience/",
+
+                success: function (funk) {
+                    let values = jQuery.parseJSON(funk);
+                    console.log(values);
+
+                    let htmlst = "<table class=table table-bordered> <tr> <th> ID </th> <th> Title </th> <th> Date </th> </tr>";
+                    $.each(values, (index, value) => {
+                        htmlst += `<tr> <td>${value.ExperienceID}</td> <td>${value.Name}</td> <td>${value.Date}</td> </tr>`
+                    });
+                    htmlst += "</table>";
+                    $("#listexperience").html(htmlst);
+                }
+            });
+        });
+    </script>
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
