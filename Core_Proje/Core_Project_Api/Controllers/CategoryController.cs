@@ -12,11 +12,24 @@ namespace Core_Project_Api.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
+        public Context context = new Context();
+
         [HttpGet]
         public IActionResult GetCagegoryList()
         {
-            var context = new Context();
             return Ok(context.Categories.ToList());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetID(int id)
+        {
+            var value = context.Categories.Find(id);
+
+            if (value.Equals(null))
+                return NotFound();
+            return Ok(value);
+
+        }
     }
+
 }
