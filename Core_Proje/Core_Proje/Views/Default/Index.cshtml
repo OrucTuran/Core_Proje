@@ -21,7 +21,13 @@
 
             @await Component.InvokeAsync("ExperienceList")
 
-            @await Component.InvokeAsync("TestimonialList")
+            <!-- Testimonial Section -->
+            <div class="section px-2 px-lg-4 pb-4 pt-5 mb-5" id="testimonial">
+                <div class="container-narrow">
+                    @await Component.InvokeAsync("TestimonialList")
+                </div>
+            </div>
+
 
             <div class="section px-2 px-lg-4 pb-4 pt-5 mb-5" id="contact">
                 <div class="container-narrow">
@@ -30,7 +36,7 @@
                     </div>
                     <div class="row">
                         @*@await Component.InvokeAsync("SendMessage")*@
-                        @await Html.PartialAsync("/Views/Default/SendMessage.cshtml") 
+                        @await Html.PartialAsync("/Views/Default/SendMessage.cshtml")
 
                         @await Component.InvokeAsync("ContactDetails")
                     </div>
