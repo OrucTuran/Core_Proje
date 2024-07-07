@@ -31,7 +31,7 @@
                                 <td>@item.ReceiverName</td>
                                 @*<td>@item.Mail</td>*@
                                 <td>@item.Subject</td>
-                                <td>@item.Date</td>
+                                <td>@(((DateTime)item.Date).ToString("dd-MMM-yyyy"))</td>
                                 <td><a href="/AdminMessage/AdminMessageDelete/@item.WriterMessageID" class="btn btn-outline-danger">Delete</a></td>
                                 <td><a href="/AdminMessage/AdminMessageDetails/@item.WriterMessageID" class="btn btn-outline-success">See Message</a></td>
                             </tr>

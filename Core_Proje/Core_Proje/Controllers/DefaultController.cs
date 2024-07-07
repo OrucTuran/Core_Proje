@@ -4,41 +4,46 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Core_Proje.Controllers
 {
     [AllowAnonymous]
     public class DefaultController : Controller
     {
-
         public IActionResult Index()
         {
             return View();
         }
+
         public PartialViewResult HeaderPartial()
         {
             return PartialView();
         }
+
         public PartialViewResult NavbarPartial()
         {
             return PartialView();
         }
+
         [HttpGet]
-        public PartialViewResult SendMessage()
+        public IActionResult SendMessage()
         {
-            return PartialView();
+            return View();
         }
+
         [HttpPost]
-        public PartialViewResult SendMessage(Message p)
+        public IActionResult SendMessage(Message p)
         {
-            MessageManager messageManager = new MessageManager(new EfMessageDal());
-            p.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            p.Status = true;
-            messageManager.TAdd(p);
-            return PartialView();
+            if (ModelState.IsValid)
+            {
+                MessageManager messageManager = new MessageManager(new EfMessageDal());
+                p.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                p.Status = true;
+                messageManager.TAdd(p);
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View(p);
         }
     }
 }
